@@ -1,0 +1,16 @@
+#3. mrc <- function(x,y){
+	imsi <- ((y**3+4)-(x**3+4))/(y-x)
+	return(imsi)
+}
+
+
+#############################
+#1. 
+name <- c('유관순', '홍길동', '이순신','신사임당')
+gender <- c('F', 'M', 'M', 'F')
+price <- c(50, 65, 45, 75)
+result <- ifelse(price >= 65, "Best", "Normal")
+
+client <- data.frame(name, gender, price)
+
+

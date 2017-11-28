@@ -1,0 +1,11 @@
+name <- c('kim', 'lee', 'choi', 'park')
+which(name == 'choi')
+
+no <- c(1:5)
+name <- c('홍길동', '이순신', '강감찬', '유관순', '김유신')
+score <- c(85, 78, 89, 90, 74)
+exam <- data.frame(학번=no, 이름=name, 성적=score)
+
+which(exam$이름 == '유관순')
+
+exam[4,]

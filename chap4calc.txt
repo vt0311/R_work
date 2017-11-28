@@ -1,0 +1,48 @@
+num1<-100
+num2<-20
+
+result <- num1 + num2
+result
+
+result <- num1 - num2
+result
+
+result <- num1 * num2
+result
+
+result <- num1 / num2
+result
+
+result <- num1 %% num2
+result
+
+result <- num1^2
+result
+
+result <- num2 ** 3
+result
+
+
+num1<-14
+num2<-5
+
+result <- num1 == num2
+result
+
+result <- num1 != num2
+result
+
+result <- num1 > num2
+result
+
+result <- num1 < num2
+result
+
+result <- num1 >= num2
+result
+
+result <- num1 & num2
+result
+
+result <- num1 | num2
+result

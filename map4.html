@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS = false; L_NO_TOUCH = false; L_DISABLE_3D = false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="https://rawgit.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css" />
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <style> #map_9393580bc6cb4a8f91f6189fb3861f6e {
+                position : relative;
+                width : 100.0%;
+                height: 100.0%;
+                left: 0.0%;
+                top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_9393580bc6cb4a8f91f6189fb3861f6e" ></div>
+        
+</body>
+<script>    
+    
+
+            
+                var bounds = null;
+            
+
+            var map_9393580bc6cb4a8f91f6189fb3861f6e = L.map(
+                                  'map_9393580bc6cb4a8f91f6189fb3861f6e',
+                                  {center: [37.566345,126.977893],
+                                  zoom: 17,
+                                  maxBounds: bounds,
+                                  layers: [],
+                                  worldCopyJump: false,
+                                  crs: L.CRS.EPSG3857
+                                 });
+            
+        
+    
+            var tile_layer_886fa5c10b0948aa89c10378876438d7 = L.tileLayer(
+                'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png',
+                {
+  "attribution": null,
+  "detectRetina": false,
+  "maxZoom": 18,
+  "minZoom": 1,
+  "noWrap": false,
+  "subdomains": "abc"
+}
+                ).addTo(map_9393580bc6cb4a8f91f6189fb3861f6e);
+        
+    
+
+            var marker_dc46e0599ad242d993fdced320112119 = L.marker(
+                [37.566345,126.977893],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_9393580bc6cb4a8f91f6189fb3861f6e);
+            
+    
+            var popup_c45dceca318f499cb5ebfebeae1f0f18 = L.popup({maxWidth: '300'});
+
+            
+                var html_e0529875fc3a442b89afcf84ff218d4c = $('<div id="html_e0529875fc3a442b89afcf84ff218d4c" style="width: 100.0%; height: 100.0%;">서울 특별시청</div>')[0];
+                popup_c45dceca318f499cb5ebfebeae1f0f18.setContent(html_e0529875fc3a442b89afcf84ff218d4c);
+            
+
+            marker_dc46e0599ad242d993fdced320112119.bindPopup(popup_c45dceca318f499cb5ebfebeae1f0f18);
+
+            
+        
+    
+
+            var marker_1ccf3c9a633e4763aacc1cbd60cdb5f4 = L.marker(
+                [37.5658859,126.9754788],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_9393580bc6cb4a8f91f6189fb3861f6e);
+            
+    
+            var popup_9ae0e302e53b4f34b60936323111e05b = L.popup({maxWidth: '300'});
+
+            
+                var html_8180abfd5c144538a0ec6e26fedd9581 = $('<div id="html_8180abfd5c144538a0ec6e26fedd9581" style="width: 100.0%; height: 100.0%;">덕수궁</div>')[0];
+                popup_9ae0e302e53b4f34b60936323111e05b.setContent(html_8180abfd5c144538a0ec6e26fedd9581);
+            
+
+            marker_1ccf3c9a633e4763aacc1cbd60cdb5f4.bindPopup(popup_9ae0e302e53b4f34b60936323111e05b);
+
+            
+        
+</script>

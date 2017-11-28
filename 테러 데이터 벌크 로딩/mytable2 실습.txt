@@ -1,0 +1,21 @@
+테이블 생성시     컨트롤 파일
+varchar2(255)     char
+number          integer 
+number          float
+
+
+drop  table mytable2 ; 
+
+create table mytable2(    
+	eventid number,
+	iyear varchar2(255),
+	imonth varchar2(255),
+	iday varchar2(255),
+	country varchar2(255),
+	country_txt varchar2(255),
+	summary varchar2(1024) 
+); 
+
+
+-- sql loader
+C:\oraclexe\app\oracle\product\11.2.0\server\bin\sqlldr.exe userid=gomdori/oracle control=mytable2.ctl 
