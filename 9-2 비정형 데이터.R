@@ -168,8 +168,27 @@ cnt_txt <- length(txt)
 cnt_txt
 
 for( i in 1:cnt_txt) {
+  # pro2 중에서 txt중에 일치하는 것이 있으면 그것을 제외처리한다.
   pro2 <-gsub((txt[i]),"", pro2)
 }
+
+pro2
+
+# poham.txt : 분석 포함할 단어를 담고 있는 텍스트 파일
+txt2 <- readLines("poham.txt")
+txt2
+
+cnt_txt2 <- length(txt2)
+cnt_txt2
+library(stringr)
+
+for( i in 1:cnt_txt2) {
+  # pro2 중에서 txt2중에 일치하는 것이 있으면 그것을 처리한다.
+  # pro3 <-gsub((txt2[i]),"", pro2)
+  pro3 <- str_extract_all( pro2, (txt2[i]))
+}
+
+pro3
 
 # 두 글자 이상 되는 것만 필터링하기(한글자 짜리는 제외한다.)
 pro2 <- Filter(function(x) {nchar(x) >= 2}, pro2) 

@@ -1,0 +1,173 @@
+# 문제 1.다음 물음에 답하세요.
+getwd()
+setwd('C:/work')
+# 1) 학생 관련 파일 hakseng.csv을 읽어 들이세요.
+hakseng <- read.csv('hakseng.csv', sep='#', header=T)
+
+# 2) 각 과목의 평균 및 학생들의 평균을 구하세요.
+
+
+hakseng
+sub_mean <- c(mean(hakseng$kor), mean(hakseng$eng), mean(hakseng$math))
+sub_mean
+
+
+library('plyr')
+hakseng
+avg_df <- ddply(hakseng, .(name), summarise, 국어평균=mean(kor,), 영어평균=mean(eng), 수학평균=mean(math)  )
+avg_df
+
+help(mean)
+
+
+# 3) 과목별 평균에 대하여 파이 차트를 그리세요.
+
+# table 만들기
+header <- c('국어', '영어', '수학')
+
+somedata <- c(mean(hakseng$kor), mean(hakseng$eng), mean(hakseng$math))
+
+testdata <- xtabs(somedata ~ header) ;
+
+testdata
+
+# 내림 차수 정렬
+#testdata <- sort(testdata, decreasing=T)
+
+testdata 
+
+# pie 차트 만들기
+# 색상 지정
+colors <- c('red', 'green', 'blue')
+
+colors 
+
+# pie chart 그리기 최종 완성
+# label 설정 : 건수
+# paste() : 열거한 문자열들을 합쳐 주는 함수(concatenation)
+label <- paste(names(testdata), '\n', testdata, '점')
+# '\n'는 엔터키
+
+windows()
+# pie 차트
+# cex : 글자 크기( default : 1 )
+pie( testdata, main='과목별 평균', col=colors, cex=0.8, labels=label)
+
+
+
+# 4) 학생별 과목별에 대한 가로 막대 그래프를 그리세요.
+windows()
+hakseng
+#chart_data <-   c(mean(50, 60, 70), mean(60, 70, 80), mean(40, 50, 60) )
+#chart_data
+
+newdata <- ddply(hakseng, .(name), summarise, 
+                 평균 = sum(kor+eng+math) / 3)
+newdata
+
+mychart <- newdata[c('평균')]
+mychart
+
+chart_data <- as.matrix(mychart)
+chart_data
+str(chart_data)
+
+#chart_data2 <- chart_data[,2]
+#dataframe2 <- dataframe(chart_data)
+#chart_data2 <- c( chart_data[,2])
+#chart_data2
+
+newname <- newdata['name']
+newname
+
+
+windows()
+barplot(chart_data, beside=T, horiz=T, xlab='점수', ylab='김철수 박영희 홍길동',  main='차트 그리기', col=rainbow(4))
+
+
+
+# 문제 2. 숫자 1개를 입력하면 더하기 5를 수행해주는 함수 plus5를 작성하세요.
+#x <- 6
+#result1 = plus5(x)
+#result1 # 11
+plus5 <- function(x) {
+  y = x + 5
+  return (y)
+} 
+x <- 6
+result1 = plus5(x)
+result1 # 11
+
+x <- 1
+result1 = plus5(x)
+result1 # 6
+
+# 문제 3.다음 물음에 답하세요.
+# 1) 엑셀 파일 mydata.csv를 변수 mydata에 읽어 들이시오
+mydata <- read.csv('mydata.csv')
+mydata
+# 2) 다음 요구 조건에 맞는 코딩 변경을 수행하세요.
+# (1) gender2 : 성별
+mydata$gender2[mydata$gender == 1 | mydata$gender == 3] <- '남'
+mydata$gender2[mydata$gender == 2 | mydata$gender == 4] <- '여'
+mydata
+
+# (2) age2 : 나이는 10대 ~ 40대으로 표현한다.
+# 단, 결측치 나이는 20으로 치환하도록 한다.
+mydata$age2[mydata$age >= 10 & mydata$gender < 20] <- '10대'
+mydata$age2[mydata$age >= 20 & mydata$gender < 30] <- '20대'
+mydata$age2[mydata$age >= 30 & mydata$gender < 40] <- '30대'
+mydata$age2[mydata$age >= 40 & mydata$gender < 50] <- '40대'
+mydata
+mydata$age2 = ifelse(!is.na(mydata$age), mydata$age2, '20대')
+mydata
+
+# (3) salary2 : 급여 컬럼이다.
+# '150'만 미만은 저수익, '230' 미만은 중수익, '230' 이상은 고수익으로 표기한다.
+mydata$salary2[mydata$salary < 150 ] <- '저수익'
+mydata$salary2[mydata$salary >= 150 & mydata$salary < 230] <- '중수익'
+mydata$salary2[mydata$salary >= 230] <- '고수익'
+mydata
+# (4) survey2 : 만족도를 역코딩하세요.(1 : 가장 좋음 ~ 5 : 가장 나쁨)
+survey <- mydata$survey
+survey2 <- 6-survey
+survey2
+mydata$survey2 <- survey2
+
+mydata$survey2
+
+# (5) brand2 : lg(엘지) ss(삼성) hd(현대)
+
+# 3) 기술 통계량 보고서를 작성하세요.
+# 
+# 문제 4.테이블 다루는 문제
+# 1) 마당 생성 스크립트.txt 파일을 이용하여 테이블을 생성하세요.
+# 주의 :  gomdori 계정이 아니다.
+# 
+# 2) 고객 이름, 책 이름, 판매 가격을 조회하세요.
+# CTAS 기법을 이용하여 테이블 MySale 테이블에 복제하세요.
+# select customers.name, books.bookname, orders.saleprice
+# from ( customers inner join orders
+#        on customers.custid = orders.custid ) inner join books 
+# on orders.bookid = books.bookid
+# 
+# 3) MySale 테이블을 R에서 읽어들이세요.
+# siljuk : 판매가에 대한 실적 컬럼이다.
+# 판매가가 8,000원 미만은 '나쁨', 8,000원 이상 그리고 15,000미만은 '보통', 15,000 이상은 '좋음'으로 표기한다.
+# 
+# 4) 고객별 총 구매 금액을 조회하되, 구매 금액이 높은 순으로 정렬하세요.
+# CTAS 기법을 이용하여 테이블 MySummary 테이블에 복제하세요.
+# 힌트 : CTAS를 사용할 때에는 함수는 반드시 alias를 사용해줘야 한다.
+# select customers.name, sum(orders.saleprice)
+# from customers inner join orders
+# on customers.custid = orders.custid
+# group by customers.name
+# order by sum(orders.saleprice) desc ;
+# 
+# 5) MySummary 테이블을 R에서 읽어들이세요.
+# 이에 대한 pie 차트를 그려 보세요.
+# 
+# 문제 5.워드 클라우드 문제
+# 첨부된 presidential address.txt 파일을 이용하여 
+# 꺽은 선 그래프와 워드 클라우드를 만드세요.
+# 단, 상위 15개만 그리도록 한다.

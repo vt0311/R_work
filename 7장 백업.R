@@ -419,7 +419,10 @@ library('plyr')
 #newdata 변수에 회원 이름별로 조회수의 평균과 적립 포인트의 토탈 금액을 구하시오.
 
 newdataset <- join(member, board, by='아이디')
+newdataset
 avg_df <- ddply(newdataset, .(이름), summarise, 조회수평균=mean(조회수), 적립포인트토탈=sum(적립포인트))
+avg_df
+
 #avg_df2 <- ddply(newdataset, .(이름), summarise, 적립포인트토탈=sum(적립포인트))
 #newdata <- select(avg_df, avg_df2) 
 newdata <- ddply(newdataset, .(이름), summarise, 조회수평균=100* mean(조회수), 적립포인트토탈=sum(적립포인트))
