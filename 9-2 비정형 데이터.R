@@ -25,7 +25,7 @@ par(mar=c(4, 6, 4, 4))
 windows(height = 12, width = 10)
 barplot(rev(result3), horiz = TRUE, las=2, main='Beatles Yesterday', col='lightblue')
 
-install.packages('wordcloud')
+#install.packages('wordcloud')
 library(wordcloud)
 par(mar=c(2,2,2,2))
 set.seed(12345)
