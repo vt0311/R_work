@@ -3,18 +3,17 @@ getwd()
 setwd('C:/work')
 # 1) 학생 관련 파일 hakseng.csv을 읽어 들이세요.
 hakseng <- read.csv('hakseng.csv', sep='#', header=T)
+hakseng
 
 # 2) 각 과목의 평균 및 학생들의 평균을 구하세요.
-hakseng
+# 각 과목의 평균
 sub_mean <- c(mean(hakseng$kor), mean(hakseng$eng), mean(hakseng$math))
 sub_mean
 
+# 학생들의 평균
 library('plyr')
-hakseng
-avg_df <- ddply(hakseng, .(name), summarise, 국어평균=mean(kor,), 영어평균=mean(eng), 수학평균=mean(math)  )
+avg_df <- ddply(hakseng, .(name), summarise, 평균 = sum(kor+eng+math) / 3)
 avg_df
-
-help(mean)
 
 
 # 3) 과목별 평균에 대하여 파이 차트를 그리세요.
@@ -30,7 +29,6 @@ testdata
 
 # 내림 차수 정렬
 #testdata <- sort(testdata, decreasing=T)
-
 testdata 
 
 # pie 차트 만들기
@@ -45,24 +43,31 @@ colors
 label <- paste(names(testdata), '\n', testdata, '점')
 # '\n'는 엔터키
 
-windows()
 # pie 차트
+windows()
 # cex : 글자 크기( default : 1 )
 pie( testdata, main='과목별 평균', col=colors, cex=0.8, labels=label)
 
 
 
 # 4) 학생별 과목별에 대한 가로 막대 그래프를 그리세요.
-windows()
+
 hakseng
 #chart_data <-   c(mean(50, 60, 70), mean(60, 70, 80), mean(40, 50, 60) )
 #chart_data
 
-newdata <- ddply(hakseng, .(name), summarise, 
-                 평균 = sum(kor+eng+math) / 3)
-newdata
+newdata <- ddply(hakseng, .(name), summarise, 평균 = sum(kor+eng+math) / 3)
+newdata 
+
+mychart <- as.matrix(newdata)
+mychart
+
+newdata2 <- table(newdata)
+newdata2
 
 mychart <- newdata[c('평균')]
+mychart <- as.matrix(hakseng[1:3, 2:4])
+#mychart <- as.matrix(hakseng[1:3, 1:4])
 mychart
 
 chart_data <- as.matrix(mychart)
@@ -79,8 +84,8 @@ newname
 
 
 windows()
-barplot(chart_data, beside=T, horiz=T, xlab='점수', ylab='김철수 박영희 홍길동',  main='차트 그리기', col=rainbow(4))
-
+barplot(chart_data, beside=T, horiz=T, xlab='점수', main='학생별 과목별 평균 점수', col=rainbow(4))
+legend("topright", legend=c("국어", "영어", "수학"), col=c("red", "green", "blue"), lty=1, cex=0.7)
 
 
 # 문제 2. 숫자 1개를 입력하면 더하기 5를 수행해주는 함수 plus5를 작성하세요.
@@ -159,11 +164,13 @@ mydata
 # from ( customers inner join orders
 #        on customers.custid = orders.custid ) inner join books 
 # on orders.bookid = books.bookid
-# 
+
+
 # 3) MySale 테이블을 R에서 읽어들이세요.
 # siljuk : 판매가에 대한 실적 컬럼이다.
 # 판매가가 8,000원 미만은 '나쁨', 8,000원 이상 그리고 15,000미만은 '보통', 15,000 이상은 '좋음'으로 표기한다.
-# 
+
+
 # 4) 고객별 총 구매 금액을 조회하되, 구매 금액이 높은 순으로 정렬하세요.
 # CTAS 기법을 이용하여 테이블 MySummary 테이블에 복제하세요.
 # 힌트 : CTAS를 사용할 때에는 함수는 반드시 alias를 사용해줘야 한다.
@@ -175,7 +182,10 @@ mydata
 # 
 # 5) MySummary 테이블을 R에서 읽어들이세요.
 # 이에 대한 pie 차트를 그려 보세요.
-# 
+
+
+
+
 # 문제 5.워드 클라우드 문제
 # 첨부된 presidential address.txt 파일을 이용하여 
 # 꺽은 선 그래프와 
