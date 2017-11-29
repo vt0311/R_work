@@ -190,7 +190,7 @@ head(data)
 # 01. 교육수준과 흡연율 간의 관련성을 분석하기 위한 연구가설을 수립하고, 각 단계별로 가설을 검증하시오.[독립성 검정]
 
 # 단계 1: 파일 가져오기
-smoke <- read.csv('smoke.csv', header = T)
+smoke <- read.csv('smoke2.csv', header = T)
 smoke
 head(smoke)
 
@@ -199,8 +199,55 @@ head(smoke)
 # smoke 컬럼(종속변수) : 1:과다흡연, 2:보통흡연, 3: 비흡연
 
 
+smoke$education2[smoke$education == 1] <- '대졸'
+smoke$education2[smoke$education == 2] <- '고졸'
+smoke$education2[smoke$education == 3] <- '중졸'
+
+smoke$smoke2[smoke$smoke == 1] <- '과다흡연'
+smoke$smoke2[smoke$smoke == 2] <- '보통흡연'
+smoke$smoke2[smoke$smoke == 3 ] <- '비흡연'
+
+smoke$smoke2 = ifelse(!is.na(smoke$smoke), smoke$smoke2, '비흡연')
+smoke$smoke = ifelse(!is.na(smoke$smoke), smoke$smoke, 3)
+smoke
+
 # 단계 3: 교차분할표 작성
-
+table(smoke$education, smoke$smoke)
 # 단계 4: 독립성 검정
-
+chisq.test(smoke$education2, smoke$smoke2)
 # 단계 5: 검정결과 해
+
+
+#### 추가 문제  ##########
+
+# 문제 1.다음 물음에 답하세요.
+# 
+# 소괄호 안의 내용은 리코딩된 컬럼의 이름이다.
+# 1) 엑셀 파일 somefile.csv를 변수 somefile에 읽어 들이시오.
+somefile <- read.csv("somefile.csv", header = TRUE)
+somefile
+
+# 2) 세대별(age2)로 브랜드(brand2) 선호도에 차이가 있는 지 분석하시오.
+# 수직 막대 그래프를 그리시오.
+
+
+
+# 3) 성별(gender2)로 브랜드(brand2) 선호도에 차이가 있는 지 분석하시오.
+# 수평 막대 그래프를 그리시오.
+# 
+# 4) 전공별(subject2)로 영화(movie2) 선호도에 차이가 있는 지 분석하시오.
+# 수직 누적 막대 그래프를 그리시오.
+# 
+# 참고
+# (1) gender2 : 성별(남자 : 1, 3, 여자 : 2, 4)
+# 
+# (2) age2 : 나이는 10대 ~ 40대으로 표현한다.
+# 단, 결측치 나이는 20으로 치환하도록 한다.
+# 
+# (3) brand2 : lg(엘지) ss(삼성) hd(현대)
+#     1. lg(엘지) 2. ss(삼성) 3. hd(현대)
+# 이상치는 1(엘지), 결측치는 3(현대)로 변경하여 처리하시오.
+# 
+# (4) movie2 : (액션 : 1, 멜로 : 2, 공포 : 3, 환타지 : 4)
+# 이상치 및 결측치는 (액션 : 1)으로 변경하여 처리하시오.
+
