@@ -242,12 +242,7 @@ wordcloud(words=names(mydata), freq=mydata, scale=c(5, 0.5), min.freq=1,
 
 #### 꺾은 선 그래프
 
-#data <- read.csv("주요선수별성적-2013년.csv", header=T)
-#data
 
-# 선수명(2번째)와 연봉대비출루율(21), 연봉대비타점율(22) 번째 컬럼을 newdata에 저장
-#newdata <- data[, c(2,21,22)]
-#newdata
 mydata
 line1 <- data$연봉대비출루율
 line2 <- data$연봉대비타점율
@@ -259,6 +254,24 @@ plot(as.matrix(mydata), type = "o", axes = F, ylab = "", xlab = "", ylim = c(0, 
 axis(side = 1, at = 1:15, lab = names(mydata), las = 2)
 axis(2, las = 1)
 par(new = T)
+
+# 마진 영역(가장 왼쪽, 오른쪽 등등)에 글자를 넣어 주는 함수
+mtext(side=2,line=2.5,"빈도수") 
+
+# 모눈 격자
+abline(h=seq(0,50,5),v=seq(1,25,1),col="gray",lty=2)
+
+# 범례 넣기
+#legend(18,50,names(data[21:22]),cex=0.8,col=c("red","blue"),lty=1,lwd=2,bg="white")
+legend(18,50,cex=0.8,col=c("blue"),lty=1,lwd=2,bg="white", title="11")
+
+help(legend)
+
+mydata
+
+
+
+
 
 # 연봉 대비 출루율에 대한 꺽은 선 그래프
 # type="o" : 선과 점 모두 그리기
@@ -289,7 +302,7 @@ mtext(side=2,line=2.5,"연봉대비 출루율")
 abline(h=seq(0,50,5),v=seq(1,25,1),col="gray",lty=2)
 
 # 범례 넣기
-legend(18,50,names(data[21:22]),cex=0.8,col=c("red","blue"),lty=1,lwd=2,bg="white")
+legend(18,50,names(data[]),cex=0.8,col=c("red","blue"),lty=1,lwd=2,bg="white")
 
 
 
