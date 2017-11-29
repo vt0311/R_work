@@ -19,6 +19,16 @@ somefile$age2 = ifelse(!is.na(somefile$age), somefile$age2, '20대')
 somefile
 #unique(somefile$age2) 
 
+somefile$brand2[somefile$brand == 1] <- '엘지'
+somefile$brand2[somefile$brand == 2] <- '삼성'
+somefile$brand2[somefile$brand == 3] <- '현대'
+somefile$brand2[somefile$brand < 1 | somefile$brand > 3 ] <- '엘지'
+unique(somefile$brand) 
+
+somefile$brand2 = ifelse(!is.na(somefile$brand), somefile$brand2, '현대')
+unique(somefile$brand2)
+somefile
+
 agebrand <- table(somefile$brand2, somefile$age2)
 agebrand
 
@@ -30,16 +40,7 @@ barplot(agebrand, ylim=c(0, 120), beside=T, col=c( "blue", "red", "green"), lege
 # 수평 막대 그래프를 그리시오.
 somefile$gender2[somefile$gender == 1 | somefile$gender == 3] <- '남자'
 somefile$gender2[somefile$gender == 2 | somefile$gender == 4] <- '여자'
-
-somefile$brand2[somefile$brand == 1] <- '엘지'
-somefile$brand2[somefile$brand == 2] <- '삼성'
-somefile$brand2[somefile$brand == 3] <- '현대'
-somefile$brand2[somefile$brand < 1 | somefile$brand > 3 ] <- '엘지'
-unique(somefile$brand) 
-
-somefile$brand2 = ifelse(!is.na(somefile$brand), somefile$brand2, '현대')
-unique(somefile$brand2)
-somefile
+unique(somefile$gender2) 
 
 genderbrand <- table(somefile$brand2, somefile$gender2)
 genderbrand
