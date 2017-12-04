@@ -122,4 +122,8 @@ t.test(y, mu=145.0, alter='two.side', conf.level=0.95)
 #        | 따라서 식생활 습관 및 체질 개선에 따라 신장이 기존에 알려진 수치보다 커졌다고 볼 수 있다.
 #---------------------------
 
+mymethod <- read.csv('mymethod.csv')
+mymethod
 
+mymethod2 <- subset(mymethod, performance < 99)
+mymethod2
