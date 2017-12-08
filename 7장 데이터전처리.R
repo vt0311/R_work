@@ -417,15 +417,35 @@ board
 #plyr 패키지를 이용하여 2개의 변수(member, board)를 병합하시오.
 library('plyr')
 #newdata 변수에 회원 이름별로 조회수의 평균과 적립 포인트의 토탈 금액을 구하시오.
-newdata <- member
+
 newdataset <- join(member, board, by='아이디')
-avg_df <- ddply(newdataset, .(이름), summarise, 조회수평균=mean(조회수))
-avg_df2 <- ddply(newdataset, .(이름), summarise, 적립포인트토탈=s um(적립포인트))
+newdataset
+avg_df <- ddply(newdataset, .(이름), summarise, 조회수평균=mean(조회수), 적립포인트토탈=sum(적립포인트))
 avg_df
+
+#avg_df2 <- ddply(newdataset, .(이름), summarise, 적립포인트토탈=sum(적립포인트))
+#newdata <- select(avg_df, avg_df2) 
+newdata <- ddply(newdataset, .(이름), summarise, 조회수평균=100* mean(조회수), 적립포인트토탈=sum(적립포인트))
+
+newname  <- newdata['이름']
+newname
+
+mychart <- newdata[c('조회수평균', '적립포인트토탈')]
+mychart <- as.matrix(mychart)
+legend <- newname
+barplot(mychart, beside=T, horize=T, main='차트그리기', col=rainbow(4), legend)
+
+
+
+
+
 #newdata 변수를 이용하여 세로 막대 그래프를 그리시오.
 #단, 조회수의 평균은 수치 100*을 곱하여 그리도록 한다.
 
 #일련 번호가 1이거나 3인 데이터만 조회하되, 이름 급여 작성 일자만 조회하시오.
 #단, 일련 번호의 역순으로 조회하시오.
+library(dplyr)
+newdataset %>% arrange( desc(일련번호) %>% filter(일련번호 %in% c(1,3)) %>% select(일련번호, 이름, 급여, 작성일자))
 
+help(in)
 

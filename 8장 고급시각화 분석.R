@@ -295,7 +295,7 @@ graph9
 
 # 1260 ¹ø
 getwd()
-setwd('C:\work')
+setwd('C:/work')
 install.packages('ggmap')
 library(ggmap)
 library(grid)
