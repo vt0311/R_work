@@ -31,7 +31,7 @@ result <- dbGetQuery(conn, query)
 class( result ) # data.frame
 result
 
-query2 = 'select * from drug_2015'
+query2 = 'select * from N06A_DRUG_VIEW'
 result2 <- dbGetQuery(conn, query2)
 class( result2 ) # data.frame
 head(result2)
@@ -42,7 +42,7 @@ result3 <- dbGetQuery(conn, query3)
 class( result3 ) # data.frame
 result3
 
-query4 = 'select * from table10'
+query4 = 'select * from N06A_DRUG_2015'
 result4 <- dbGetQuery(conn, query4)
 class( result4 ) # data.frame
 result4
