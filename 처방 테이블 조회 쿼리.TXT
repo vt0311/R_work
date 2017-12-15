@@ -1,0 +1,45 @@
+-- 작성자 : 하승원 
+
+-- 2015년 처방 데이터 전체 조회하는 법:
+select * from DRUG_2015
+UNION ALL
+select * from DRUG_2015_2;
+
+
+-- 2014년 처방 데이터 전체 조회하는 법:
+select * from DRUG_2014_1;
+UNION ALL
+select * from DRUG_2014_2;
+
+-- 2013년 처방 데이터 전체 조회하는 법:
+select * from DRUG_2013;
+
+
+-- 2012년 처방 데이터 전체 조회하는 법:
+select * from DRUG_2012;
+
+
+
+-- 2012년 ~ 2015년 4개년 항우울제 처방 데이터 뷰 조회하는 법:
+select * from N06A_DRUG_VIEW;
+
+-- **2015년의 항우울제 처방 데이터 테이블 조회하는 법:
+select * from N06A_DRUG_2015;
+
+-- *2015년의 항우울제 처방 데이터 '뷰' 조회하는 법:
+select * from N06A_DRUG_2015;
+
+-- *2014년의 항우울제 처방 데이터 뷰 조회하는 법:
+select * from N06A_DRUG_2014;
+
+
+-- *2013년의 항우울제 처방 데이터 뷰 조회하는 법:
+select * from N06A_DRUG_2013;
+
+
+-- *2012년의 항우울제 처방 데이터 뷰 조회하는 법:
+select * from N06A_DRUG_2012;
+
+-- BARCODEDATA 테이블 ( 성분코드와 ATC 코드가 같이 들어있는 테이블 ) 조회하기 :
+SELECT * FROM BARCODEDATA;
+
