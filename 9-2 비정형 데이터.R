@@ -18,8 +18,9 @@ lyrics2 <- gsub('\\,', '', lyrics2)
 lyrics2
 
 result1<-table(lyrics2)
+result1
 result2<-sort(result1, decreasing = TRUE)
-
+result2
 result3 <- result2[result2 > 1]
 par(mar=c(4, 6, 4, 4))
 windows(height = 12, width = 10)

@@ -146,7 +146,7 @@ table(result, weater_test$RainTomorrow)
 (82+5) / nrow(weater_test) 
 # [1] 0.7909091
 
-#--------------------- 1634번-----------------------
+#--------------------- 1634번: 랜덤포레스트 예-----------------------
 # install.packages('randomForest')
 library(randomForest)
 data(iris)

@@ -3,12 +3,12 @@
 # 연관 규칙 생성
 install.packages("arules")
 library(arules)
-
+getwd()
 setwd('C:/work')
 # transaction 객체 생성(파일 이용)
 tran = read.transactions('tran.txt', format = "basket", sep=",")
 tran
-
+str(tran)
 
 # transaction 데이터 보기
 # 트랜잭션 항목을 출력한다.
