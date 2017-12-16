@@ -98,10 +98,49 @@
 #  mytooth.csv
 
 # 가설 : 귀무 가설 : 홍보 이벤트 전/후의 구매 비율은 차이가 없다.
-  
 # 변수명 -  id : 아이디 번호,  buy : 구매 여분( 0 : 구매 하지 않음, 1 : 구매함 )
+# 문제- 1.구매 여부의 빈도 수와 비율에 대한 기술 통계량을 구하시오.
   
-#  
+  mytooth <- read.csv('mytooth.csv', header=TRUE)
+  
+  table(mytooth$buy)
+  #  0  1 
+  # 40 10
+  
+  # 항목별 비율 출력
+  prop.table(table(mytooth$buy))
+  #   0   1 
+  # 0.8 0.2 
+  
+  prop_tb_mybuy <- prop.table(table(mytooth$buy))
+                                        
+  # 백분율 표현
+  round(prop_tb_mybuy*100, 2)
+  #  0  1 
+  # 80 20
+  
+  # 2.구매 여부의 빈도 수와 비율을 테이블 형태로 표현하시오.
+  tb_mybuy <- table(mytooth$buy)
+  buyFreq <- c(tb_mybuy)
+  buyProp <- c(round(prop.table(tb_mybuy)*100, 1))
+  buytable <- data.frame(Freq = buyFreq, Prop = buyProp ) 
+    
+  buytable
+  #   Freq Prop
+  # 0   40   80
+  # 1   10   20
+  
+  
+  
+  # 3.패키지를 이용하여 구매 여부에 따른 빈도와 비율 값을 구해 보시오.
+  describe(mytooth$buy)
+  # Numeric
+  #               mean    median       var        sd   valid.n
+  # x              0.2         0    0.1633    0.4041        50
+  
+  
+  # 4.실제 구매 비율이 10%보다 향상이 되었는 지를 검증하시오.
+  
   
   
   
