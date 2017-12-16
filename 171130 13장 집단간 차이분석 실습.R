@@ -1,28 +1,112 @@
-# p.2 신차 색상 고객 선호도 분석
-# A 자동차 메이커에서 신차를 출시하기 전에 우수 고객 초청 행사에서 색상에 대한 선호도를 조사하였다.
+####### p.2 <신차 색상 고객 선호도 분석> ########
+# 설명: A자동차 메이커에서 신차를 출시하기 전에 우수 고객 초청 행사에서 색상에 대한 선호도를 조사하였다.
+# 예제데이터 : mycar.csv
+# 가설: 귀무가설 : 신차의 색상에 대한 고객의 선호도는 차이가 없다.
+# 변수명 : id : 아이디 번호, color : 선호하는 색상(1:검정색, 2:흰색, 3: 쥐색, 4:연청색, 5:연녹색)
 
-# 1.색상의 유형별로 빈도 수와 비율에 대한 기술 통계량을 구하시오.
-  data <- read.csv('mycar.csv', header=TRUE)
-  head(data)
-  color <- data$color # 색상
-  color
-
+# 1.색상의 유형별로 빈도수와 비율에 대한 기술 통계량을 구하시오.
+  setwd('C:/R_work')
+  mycar <- read.csv('mycar.csv', header=TRUE)
+  head(mycar)
   
-  # 빈도수
-  table(color, useNA='ifany')
-  # 비율값
-  prop.test(  c(88, 65, 52, 40, 55), c(300, 300, 300, 300, 300 ))
-
+  
+  table(mycar$color)
+  # 1  2  3  4  5 
+  # 88 65 52 40 55
+  
+  table(mycar[2])
+  # 1  2  3  4  5 
+  # 88 65 52 40 55
+  
+  # 빈도수 출력하기
+  prop.table(table(mycar$color))
+  #         1         2         3         4         5 
+  # 0.2933333 0.2166667 0.1733333 0.1333333 0.1833333 
+  
+  prop.table(table(mycar[2]))
+  #         1         2         3         4         5 
+  # 0.2933333 0.2166667 0.1733333 0.1333333 0.1833333 
+  
+  # 백분율을 나타내기 위해 100을 곱함.
+  prop.table(table(mycar[2]))*100
+  #        1        2        3        4        5 
+  # 29.33333 21.66667 17.33333 13.33333 18.33333 
+  
+  # 소수점 첫째자리까지 반올림
+  round(prop.table(table(mycar[2]))*100, 1)
+  #    1    2    3    4    5 
+  # 29.3 21.7 17.3 13.3 18.3 
+  
+  
   # 2.색상 유형별 빈도 수와 비율 값을 테이블 형태로 표현하시오.
-  table(color, useNA='ifany')
-  prop.test(   table(color, useNA='ifany'))
-# 3.패키지를 이용하여 색생 유형에 따른 빈도와 비율 값을 구해보시오.
+  surveyFreq <- c(table(mycar$color))  
+  surveyProp <- c(round(prop.table(table(mycar$color))*100, 1))
+  surveytable <- data.frame(Freq=surveyFreq, Prop=surveyProp)
+  surveytable
+  #   Freq Prop
+  # 1   88 29.3
+  # 2   65 21.7
+  # 3   52 17.3
+  # 4   40 13.3
+  # 5   55 18.3
   
-# 4.색상 유형에 따른 선호도의 차이가 있는지를 검증하시오.
+  
+  # 3.패키지를 이용하여 색상 유형에 따른 빈도와 비율 값을 구해보시오.
+  
+  # 빈도와 비율의 기술통계량 분석을 한번에 해주는 기능을 가진 패키지
+  install.packages('Hmisc')
+  library(Hmisc)
+  
+  # 데이터 테이블의 빈도분석 중심의 기술통계량 분석을 한번에 해주는 기능함수를 가진 패키지
+  install.packages('prettyR')
+  library(prettyR)
+  
+  describe(mycar)
+  # Description of mycar 
+  # 
+  # Numeric
+  #               mean    median       var        sd   valid.n
+  # id           150.5     150.5      7525     86.75       300
+  # color        2.697         2     2.172     1.474       300
+  
+  describe(mycar$color)
+  # Numeric
+  #               mean    median       var        sd   valid.n
+  # x            2.697         2     2.172     1.474       300
+  
+  #freq(mycar)
+  freq(mycar$color)
+  # Frequencies for mycar$color 
+  #         1    2    5    3    4   NA
+  #        88   65   55   52   40    0
+  # %    29.3 21.7 18.3 17.3 13.3    0 
+  # %!NA 29.3 21.7 18.3 17.3 13.3 
+  
+  
+  # 4.색상 유형에 따른 선호도의 차이가 있는지를 검증하시오.
+  chisq.test(surveyFreq)
+  # Chi-squared test for given probabilities
+  # 
+  # data:  surveyFreq 
+  # X-squared = 21.6333, df = 4, p-value = 0.0002371
+  
 
+######## P.3. <홍보 이벤트 효과 분석> #########
+# 설명: A 화학의 치약 제품 B에 대하여 표본 고객들의 구매 여부에 대한 조사 데이터
+#  매장에서의 고객 구매율 : 10%
+#  고객들에게 홍보 이벤트를 실시하여 구매 비율을 높이려는 프로모션을 진행함.
+#  mytooth.csv
 
-
-# p.4.책상 납품을 위한 학생 신장 분석
+# 가설 : 귀무 가설 : 홍보 이벤트 전/후의 구매 비율은 차이가 없다.
+  
+# 변수명 -  id : 아이디 번호,  buy : 구매 여분( 0 : 구매 하지 않음, 1 : 구매함 )
+  
+#  
+  
+  
+  
+  
+######## p.4.책상 납품을 위한 학생 신장 분석 ########
 
 # 한 집단의 평균이 어떤 특정한 값과 같은 지를 검증하는 것을 단일 집단 평균 분석이라고 한다.
 # 한 집단의 특정 변수가 수치 데이터로 이루어진 경우 평균 값을 분석할 수 있으며, 
