@@ -102,6 +102,7 @@
 # 문제- 1.구매 여부의 빈도 수와 비율에 대한 기술 통계량을 구하시오.
   
   mytooth <- read.csv('mytooth.csv', header=TRUE)
+  head(mytooth)
   
   table(mytooth$buy)
   #  0  1 
@@ -133,15 +134,44 @@
   
   
   # 3.패키지를 이용하여 구매 여부에 따른 빈도와 비율 값을 구해 보시오.
+  library(Hmisc)
+  library(prettyR)
   describe(mytooth$buy)
   # Numeric
   #               mean    median       var        sd   valid.n
   # x              0.2         0    0.1633    0.4041        50
+  freq(mytooth$buy)
+  # Frequencies for mytooth$buy 
+  #         0    1   NA
+  #        40   10    0
+  # %      80   20    0 
+  # %!NA   80   20 
   
   
   # 4.실제 구매 비율이 10%보다 향상이 되었는 지를 검증하시오.
+  binom.test(c(40,10), p=0.10)
+  # Exact binomial test
+  # 
+  # data:  c(40, 10) 
+  # number of successes = 40, number of trials = 50, p-value < 2.2e-16
+  # alternative hypothesis: true probability of success is not equal to 0.1 
+  # 95 percent confidence interval:
+  #   0.6628169 0.8996978 
+  # sample estimates:
+  #   probability of success 
+  #   0.8 
   
-  
+  binom.test(c(40,10), p=0.15, alternative = 'greater', conf.level=0.95)
+  # Exact binomial test
+  # 
+  # data:  c(40, 10) 
+  # number of successes = 40, number of trials = 50, p-value < 2.2e-16
+  # alternative hypothesis: true probability of success is greater than 0.15 
+  # 95 percent confidence interval:
+  #   0.6844039 1.0000000 
+  # sample estimates:
+  #   probability of success 
+  #   0.8 
   
   
   
