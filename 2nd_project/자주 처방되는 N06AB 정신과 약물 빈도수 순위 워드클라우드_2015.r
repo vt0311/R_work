@@ -24,9 +24,10 @@ password <- 'madang'
 conn <- dbConnect( drv, url, id, password)
 class( conn ) 
 
-query = 'select * from N06A_DRUG_2015 where atc_cd like \'N06AB%\''
+#query = 'select * from N06A_DRUG_2015 where atc_cd like \'N06AB%\''
 #query2 = 'select PRODUCT_NAME, COUNT(PRODUCT_NAME) from N06A_DRUG_2015 where ATC_CD like \'N06AB%\' group by PRODUCT_NAME'
-result1 <- dbGetQuery(conn, query)
+#result1 <- dbGetQuery(conn, query)
+
 class( result1 ) # data.frame
 head(result1)
 
