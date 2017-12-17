@@ -41,7 +41,7 @@ result0 <- read.csv('N06_2015_RE2.csv', header = TRUE)
 class( result1 ) # data.frame
 head(result1)
 
-#result2 <- table(result1$INGREDIENT_NAME)
+result2 <- table(result1$INGREDIENT_NAME)
 result2 <- table(result0$INGREDIENT_NAME)
 result2
 
@@ -57,6 +57,6 @@ set.seed(12345)
 palete <- rainbow(word_result)
 #palete <- brewer.pal(9, 'Set1')
 #x11()
-windows(width = '1500', height = '800')
+windows(width = '640', height = '400')
 wordcloud(words=names(word_result), freq=word_result, scale=c(5, 0.5), min.freq = 1, colors=palete, random.color=FALSE, random.order=FALSE, rot.per=0.25  )
 #warnings()
