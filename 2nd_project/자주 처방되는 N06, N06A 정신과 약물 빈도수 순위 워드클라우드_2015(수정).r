@@ -36,13 +36,14 @@ class( conn )
 #quary3 = 'select A.*, B.ATC_CD, (select INGREDIENT_NAME from GNL_NM_CD C where A.DRUG_INGREDIENT_CODE = C.DRUG_INGREDIENT_CODE  ) as INGREDIENT_NAME from (select * from DRUG_2015 ) A, (select atc_cd, DRUG_INGREDIENT_CODE from barcodedata b where atc_cd like \'N06AB%\' group by DRUG_INGREDIENT_CODE, atc_cd order by atc_cd) B where A.DRUG_INGREDIENT_CODE = B.DRUG_INGREDIENT_CODE'
 
 #result1 <- dbGetQuery(conn, query3)
-result1 <- read.csv('N06A_2015_RE2.csv', header = TRUE)
-result0 <- read.csv('N06_2015_RE2.csv', header = TRUE)
+result1 <- read.csv('N06AB_2015_RE2.csv', header = TRUE)
+#result1 <- read.csv('N06A_2015_RE2.csv', header = TRUE)
+#result0 <- read.csv('N06_2015_RE2.csv', header = TRUE)
 class( result1 ) # data.frame
 head(result1)
 
-result2 <- table(result1$INGREDIENT_NAME)
-result2 <- table(result0$INGREDIENT_NAME)
+result2 <- table(result1$DRUG_INGREDIENT_CODE)
+#result2 <- table(result0$INGREDIENT_NAME)
 result2
 
 #word_result <- head(sort(rowSums(result), decreasing=F), 10)
@@ -57,6 +58,7 @@ set.seed(12345)
 palete <- rainbow(word_result)
 #palete <- brewer.pal(9, 'Set1')
 #x11()
-windows(width = '640', height = '400')
+windows()
+#windows(width = '640', height = '400')
 wordcloud(words=names(word_result), freq=word_result, scale=c(5, 0.5), min.freq = 1, colors=palete, random.color=FALSE, random.order=FALSE, rot.per=0.25  )
 #warnings()
