@@ -50,16 +50,16 @@ result$SIDO_CODE2[result$SIDO_CODE == 48 ] <- '경남'
 result$SIDO_CODE2[result$SIDO_CODE == 49 ] <- '제주'
 
 
-sido <- table( result$SIDO_CODE2)
+sido <- table(  result$SEX, result$SIDO_CODE2)
 sido
 
 windows()
-barplot(sido, beside=T, ylim=c(0, 9000), ylab='판매량', col=rainbow(17), main='2015년 시도별 항우울제(N06AB) 판매량')
-bp <- barplot(sido, beside=T, ylim=c(0, 9000), ylab='판매량', col=rainbow(17), main='2015년 시도별 항우울제(N06AB) 판매량') 
-text(x = bp, y = sido + 300, labels = paste(sido, "건"), col = "black", cex = 0.8)
+barplot(sido, beside=T, ylim=c(0, 9000), ylab='판매량', col= c('lightblue', 'pink'), main='2015년 시도별 항우울제(N06AB) 판매량')
+bp <- barplot(sido, beside=T, ylim=c(0, 9000), ylab='판매량', col= c('lightblue', 'pink'), legend = c('남', '여'), main='2015년 시도별 항우울제(N06AB) 판매량') 
+text(x = bp, y = sido + 470, labels = paste(sido, "건"), col = "black", cex = 0.7)
 
 pct <- round(sido/sum(sido) * 100 ,1)
-text(x = bp, y = sido + 150, labels = paste( "(", pct, "%", ")" ), col = "black", cex = 0.7)
+text(x = bp, y = sido + 200, labels = paste( "(", pct, "%", ")" ), col = "black", cex = 0.7)
 
 
 ################################################################################

@@ -21,3 +21,10 @@ for (k in i) {
   help(cat)
 
 scan(what = '' )
+
+x1 <- c(1,2,3,4)
+x2 <- c('a','b','c','d')
+x3<-data.frame(x1, x2)
+x4 <- table(x3)
+x4
+pie(x3)
